@@ -6,8 +6,8 @@ on:
     types: [created, edited, deleted]
 
 jobs:
-  deploy:
-    if: contains(github.event.comment.body, '@deepdive')
+  handle-comments:
+    if: contains(github.event.comment.body, '@com')
     runs-on: ubuntu-latest
     steps:
       - name: Comment Type
@@ -28,3 +28,4 @@ jobs:
             else
               echo "Pull request comment has been created."
             fi
+          fi
