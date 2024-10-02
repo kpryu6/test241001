@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: Comment Type
         run: |
+          echo "Event name: ${{ github.event_name }}"
           if [ "${{ github.event_name }}" == "issue_comment" ]; then
             if [ "${{ github.event.action }}" == "edited" ]; then
               echo "Issue comment has been edited."
