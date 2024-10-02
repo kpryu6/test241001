@@ -2,31 +2,26 @@ name: PR and Issue CI Workflow
 on:
   issue_comment:
     types: [created, edited, deleted]
-  pull_request_review_comment:
-    types: [created, edited, deleted]
 
 jobs:
-  handle-comments:
-    if: contains(github.event.comment.body, '@com')
+  pr_commented:
+    # pr comments에만 run
+    name: PR comment
+    if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     steps:
-      - name: Comment Type
-        run: |
-          echo "Event name: ${{ github.event_name }}"
-          if [ "${{ github.event_name }}" == "issue_comment" ]; then
-            if [ "${{ github.event.action }}" == "edited" ]; then
-              echo "Issue comment has been edited."
-            elif [ "${{ github.event.action }}" == "deleted" ]; then
-              echo "Issue comment has been deleted."
-            else
-              echo "Issue comment has been created."
-            fi
-          elif [ "${{ github.event_name }}" == "pull_request_review_comment" ]; then
-            if [ "${{ github.event.action }}" == "edited" ]; then
-              echo "Pull request comment has been edited."
-            elif [ "${{ github.event.action }}" == "deleted" ]; then
-              echo "Pull request comment has been deleted."
-            else
-              echo "Pull request comment has been created."
-            fi
-          fi
+      - run: |
+          echo A comment on PR $NUMBER
+        env:
+          NUMBER: ${{ github.event.issue.number }}
+  
+  issue_commented:
+    # issue comments에만 run
+    name: Issue comment
+    if: ${{ !github.event.issue.pull_request }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo A comment on issue $NUMBER
+        env:
+          NUMBER: ${{ github.event.issue.number }}
