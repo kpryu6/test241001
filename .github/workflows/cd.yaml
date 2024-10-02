@@ -1,23 +1,23 @@
-name: CD Workflow
-on:
-  push:
-    branches: ["main"]
-jobs:
-  SSH:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run scripts in server
-        uses: appleboy/ssh-action@master
-        with:
-          key: ${{ secrets.SSH_KEY }} # private key
-          host: ${{ secrets.HOST }} # GCP IP
-          username: ${{ secrets.USER }} # GCP instance user (ryu)
-          script: |
-            mkdir ${{ github.event.repository.name }}
-            cd ${{ vars.project_path }}/${{ github.event.repository.name }}
-            git pull origin main
+#name: CD Workflow
+#on:
+#  push:
+#    branches: ["main"]
+#jobs:
+#  SSH:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - uses: actions/checkout@v3
+#      - name: Run scripts in server
+#        uses: appleboy/ssh-action@master
+#        with:
+#          key: ${{ secrets.SSH_KEY }} # private key
+#          host: ${{ secrets.HOST }} # GCP IP
+#          username: ${{ secrets.USER }} # GCP instance user (ryu)
+#          script: |
+#            mkdir ${{ github.event.repository.name }}
+#            cd ${{ vars.project_path }}/${{ github.event.repository.name }}
+#            git pull origin main
 
 # vars.project_path: /home/ryu
 # github.event.repository.name: test241001
