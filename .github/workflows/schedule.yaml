@@ -1,0 +1,9 @@
+name: Scheduled Workflow
+on:
+  schedule:
+    - cron: '0 0 * * *' # 매일 자정
+jobs:
+  scheduled-job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Scheduled Workflow"

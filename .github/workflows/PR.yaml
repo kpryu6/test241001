@@ -1,0 +1,21 @@
+name: Pull Request Workflow
+on: 
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  pr-opened:
+    if: ${{ github.event.action == 'opened'}}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "PR opened"
+  pr-synchronize:
+    if: ${{ github.event.action == 'synchronize'}}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "PR synchronize"
+  pr-reopened:
+    if: ${{ github.event.action == 'reopened'}}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "PR reopened."
