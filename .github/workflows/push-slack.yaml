@@ -18,7 +18,7 @@ jobs:
         with:
           payload: |
             {
-              "channel": "채널 ID",
+              "channel": "C07RL8Z8SG1",
               "attachments": [
                 {
                   "color": "#36a64f", # 성공시 연두색
@@ -51,7 +51,7 @@ jobs:
         with:
           payload: |
             {
-              "channel": "채널 ID",
+              "channel": "C07RL8Z8SG1",
               "attachments": [
                 {
                   "color": "#ff0000", # 실패시 빨간색
