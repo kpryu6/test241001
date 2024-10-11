@@ -17,8 +17,16 @@ jobs:
         with:
           payload: |
             {
-              "key": "value",
-              "foo": "bar"
+              "text": "Code has been pushed to the main branch. GitHub build status: ${{ job.status }}",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*Code has been pushed to the main branch.*\nGitHub build status: ${{ job.status }}"
+                  }
+                }
+              ]
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
